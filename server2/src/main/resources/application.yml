@@ -1,0 +1,19 @@
+server:
+  port: 8762
+
+
+eureka:
+  client:
+    serviceUrl:
+        defaultZone: http://localhost:8080/eureka #该服务地址
+        instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+  instance:
+    status-page-url: http://localhost:${server.port}
+spring:
+  application:
+    name: serviceTest2
+
+
+
+
+
