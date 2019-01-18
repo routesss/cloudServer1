@@ -1,3 +1,6 @@
+MyEureka:
+  serverUrl: http://127.0.0.1:8081/eureka/
+
 server:
   port: 8761
 
@@ -5,13 +8,15 @@ server:
 eureka:
   client:
     serviceUrl:
-        defaultZone: http://localhost:8080/eureka #该服务地址
+        defaultZone: ${MyEureka.serverUrl} #注册中心地址
         instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
   instance:
-    status-page-url: http://localhost:${server.port}
+    #status-page-url: http://localhost:${server.port}
+    prefer-ip-address: true  #使用ip地址的形式定义注册中心
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
 spring:
   application:
-    name: serviceTest1
+    name: serviceTest1 #服务名
 
 
 
